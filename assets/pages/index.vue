@@ -4,11 +4,11 @@
       <h1 class="text-4xl font-bold">Bienvenue sur ma belle application</h1>
       <p class="text-xl">Listing des demandes cliniques</p>
     </div>
-    <div class="flex gap-2 flex-col w-full">
+    <div class="flex w-full flex-col gap-2">
       <div
         v-for="depot in depots"
         :key="depot.id"
-        class="bg-white rounded-xl shadow-sm p-4"
+        class="rounded-xl bg-white p-4 shadow-sm"
       >
         <p class="text-base font-semibold">
           Titre:
@@ -29,11 +29,11 @@
           </span>
         </p>
         <div
-          class="my-4 p-2 border border-gray rounded-xl bg-gray-100 flex flex-col gap-2"
+          class="border-gray my-4 flex flex-col gap-2 rounded-xl border bg-gray-100 p-2"
           v-if="depot.reponses.length"
         >
           <div
-            class="border border-dashed border-2 bg-white px-4 py-2"
+            class="border border-2 border-dashed bg-white px-4 py-2"
             v-for="reponse in depot.reponses"
             :key="reponse.id"
           >
@@ -67,7 +67,7 @@
           <p class="text-base font-semibold">Aucune réponse</p>
         </div>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+          class="mt-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           @click="$router.push(`/depots/${depot.id}`)"
         >
           Répondre à la demande

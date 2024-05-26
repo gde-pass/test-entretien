@@ -4,14 +4,14 @@
       <h1 class="text-4xl font-bold">{{ depot.titre }}</h1>
       <p class="text-xl">{{ depot.description }}</p>
     </div>
-    <div class="mt-4 px-4 py-2 bg-white rounded-xl">
+    <div class="mt-4 rounded-xl bg-white px-4 py-2">
       <h2 class="text-md font-semibold">Création d'une nouvelle réponse</h2>
       <form class="flex flex-col gap-2" @submit.prevent="creer">
         <input
           type="text"
           v-model="titre"
           placeholder="Titre"
-          class="border border-gray-300 rounded-lg p-2"
+          class="rounded-lg border border-gray-300 p-2"
         />
         <textarea
           v-model="description"
@@ -20,7 +20,7 @@
         />
         <select
           v-model="type"
-          class="border border-gray-300 rounded-lg p-2"
+          class="rounded-lg border border-gray-300 p-2"
           placeholder="Priorité"
         >
           <option selected disabled value="0">Type de réponse</option>
@@ -29,7 +29,7 @@
           </option>
         </select>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           :class="{
             'cursor-not-allowed': loading,
           }"

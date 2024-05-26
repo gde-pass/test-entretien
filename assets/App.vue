@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex items-center justify-center" v-if="loading">
+  <div class="flex h-screen items-center justify-center" v-if="loading">
     Chargement
   </div>
   <div class="container mx-auto mt-10 min-h-screen" v-else>
