@@ -55,36 +55,13 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div
-      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-5"
+    <ValidationModal
       v-if="showModal"
-    >
-      <div class="relative rounded-lg bg-white p-8">
-        <span
-          class="absolute right-3 top-1.5 cursor-pointer text-xl text-gray-500 hover:text-gray-700"
-          @click.prevent="closeModal()"
-        >
-          &times;
-        </span>
-        <h2 class="mb-4 text-xl font-semibold">
-          Veuillez saisir la raison de cette validation
-        </h2>
-        <input
-          type="text"
-          v-model.trim="messageValidation"
-          class="mb-4 w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-        <div class="flex justify-center">
-          <MyButton
-            variant="green"
-            text="Envoyer"
-            @buttonClick="handleSubmit()"
-          />
-        </div>
-      </div>
-    </div>
-    <!-- End Modal -->
+      :message-validation="messageValidation"
+      @change:message-validation="messageValidation = $event"
+      @closeModal="closeModal()"
+      @submit="handleSubmit()"
+    />
   </div>
 </template>
 
@@ -95,6 +72,7 @@ import { mapGetters, mapActions } from "vuex";
 import MyButton from "../components/atoms/MyButton.vue";
 import ReponseCard from "../components/molecules/ReponseCard.vue";
 import LabelText from "../components/atoms/LabelText.vue";
+import ValidationModal from "../components/organisms/ValidationModal.vue";
 
 export default {
   name: "Index",
@@ -102,6 +80,7 @@ export default {
     MyButton,
     ReponseCard,
     LabelText,
+    ValidationModal,
   },
   data() {
     return {
