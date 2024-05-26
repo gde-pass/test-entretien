@@ -12,7 +12,7 @@ import { mapActions } from "vuex";
 
 export default {
   name: "App",
-  data: function () {
+  data() {
     return {
       loading: true,
     };
@@ -22,7 +22,7 @@ export default {
       chargerDepots: "demande_clinique/chargerDepots",
     }),
   },
-  mounted: async function () {
+  async mounted() {
     await this.chargerDepots();
     this.loading = false;
   },

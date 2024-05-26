@@ -57,7 +57,7 @@ export default {
   components: {
     MyButton,
   },
-  data: function () {
+  data() {
     return {
       titre: "",
       description: "",
@@ -69,10 +69,10 @@ export default {
     ...mapGetters({
       depots: "demande_clinique/depots",
     }),
-    id: function () {
+    id() {
       return parseInt(this.$route.params.id);
     },
-    depot: function () {
+    depot() {
       return this.depots.find((depot) => depot.id === this.id);
     },
   },
@@ -82,7 +82,7 @@ export default {
     }),
     getTypes: getAll,
     getTypeLabel: getLabel,
-    creer: async function () {
+    async creer() {
       if (!(this.titre && this.description)) {
         window.alert("Veuillez remplir tous les champs");
         return;
