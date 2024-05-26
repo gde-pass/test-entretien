@@ -24,8 +24,12 @@
           placeholder="Priorité"
         >
           <option selected disabled value="0">Type de réponse</option>
-          <option v-for="type in getTypes()" :value="type" :key="type">
-            {{ getTypeLabel(type) }}
+          <option
+            v-for="typeLabel in getTypes()"
+            :value="typeLabel"
+            :key="typeLabel"
+          >
+            {{ getTypeLabel(typeLabel) }}
           </option>
         </select>
         <button
