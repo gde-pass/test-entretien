@@ -33,7 +33,7 @@
           v-if="depot.reponses.length"
         >
           <div
-            class="border border-2 border-dashed bg-white px-4 py-2"
+            class="border-2 border-dashed bg-white px-4 py-2"
             v-for="reponse in depot.reponses"
             :key="reponse.id"
           >
