@@ -32,15 +32,12 @@
             {{ getTypeLabel(typeLabel) }}
           </option>
         </select>
-        <button
-          class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-          :class="{
-            'cursor-not-allowed': loading,
-          }"
+        <MyButton
+          variant="blue"
           :disabled="loading"
-        >
-          {{ loading ? "En cours" : "Creer" }}
-        </button>
+          :text="loading ? 'En cours' : 'Creer'"
+          @buttonClick="creer"
+        />
       </form>
     </div>
   </div>
@@ -53,9 +50,13 @@
 import { mapActions, mapGetters } from "vuex";
 import api from "@/api";
 import { getAll, getLabel } from "@/enum/demande_clinique/reponse/type";
+import MyButton from "../../components/atoms/MyButton.vue";
 
 export default {
   name: "Depot",
+  components: {
+    MyButton,
+  },
   data: function () {
     return {
       titre: "",

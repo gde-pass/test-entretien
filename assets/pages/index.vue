@@ -86,20 +86,20 @@
           <p class="text-base font-semibold">Aucune réponse</p>
         </div>
         <div class="flex justify-between">
-          <button
-            class="mt-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-            @click.prevent="$router.push(`/depots/${depot.id}`)"
-          >
-            Répondre à la demande
-          </button>
-          <button
-            class="mt-2 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+          <MyButton
+            class="mt-2"
+            variant="blue"
+            text="Répondre à la demande"
+            @buttonClick="$router.push(`/depots/${depot.id}`)"
+          />
+          <MyButton
             v-if="depot.reponses.length"
+            class="mt-2"
+            variant="green"
+            text="Valider"
             :disabled="!isAnyCheckboxChecked(depot.id)"
-            @click.prevent="openModal(depot.id)"
-          >
-            Valider
-          </button>
+            @buttonClick="openModal(depot.id)"
+          />
         </div>
       </div>
     </div>
@@ -124,12 +124,11 @@
           class="mb-4 w-full rounded-md border border-gray-300 px-3 py-2"
         />
         <div class="flex justify-center">
-          <button
-            class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
-            @click.prevent="handleSubmit()"
-          >
-            Envoyer
-          </button>
+          <MyButton
+            variant="green"
+            text="Envoyer"
+            @buttonClick="handleSubmit()"
+          />
         </div>
       </div>
     </div>
@@ -142,8 +141,13 @@ import { mapGetters, mapActions } from "vuex";
 import { getLabel } from "@/enum/demande_clinique/reponse/type";
 // import api from "@/api";
 
+import MyButton from "../components/atoms/MyButton.vue";
+
 export default {
   name: "Index",
+  components: {
+    MyButton,
+  },
   data() {
     return {
       reponseCheckboxes: {},
