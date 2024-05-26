@@ -10,77 +10,29 @@
         :key="depot.id"
         class="rounded-xl bg-white p-4 shadow-sm"
       >
-        <p class="text-base font-semibold">
-          Titre:
-          <span class="text-base font-light text-gray-700">
-            {{ depot.titre }}
-          </span>
-        </p>
-        <p class="text-base font-semibold">
-          Description:
-          <span class="text-base font-light text-gray-700">
-            {{ depot.description }}
-          </span>
-        </p>
-        <p class="text-base font-semibold">
-          Date de création:
-          <span class="text-base font-light text-gray-700">
-            {{ depot.date_creation }}
-          </span>
-        </p>
+        <LabelText title="Titre:" :text="depot.titre" variant="black" />
+        <LabelText
+          title="Description:"
+          :text="depot.description"
+          variant="black"
+        />
+        <LabelText
+          title="Date de création:"
+          :text="depot.date_creation"
+          variant="black"
+        />
+
         <div
           class="border-gray my-4 flex flex-col gap-2 rounded-xl border bg-gray-100 p-2"
           v-if="depot.reponses.length"
         >
-          <div
+          <ReponseCard
             v-for="reponse in depot.reponses"
-            :class="[
-              'flex',
-              'items-center',
-              'justify-between',
-              'border-2',
-              'border-dashed',
-              'px-4',
-              'py-2',
-              reponse.date_validation ? 'bg-green-100' : 'bg-white',
-            ]"
             :key="reponse.id"
-          >
-            <div>
-              <p class="text-base font-semibold text-red-500">
-                Type:
-                <span class="text-base font-light text-gray-700">
-                  {{ getTypeLabel(reponse.type) }}
-                </span>
-              </p>
-              <p class="text-base font-semibold">
-                Titre:
-                <span class="text-base font-light text-gray-700">
-                  {{ reponse.titre }}
-                </span>
-              </p>
-              <p class="text-base font-semibold">
-                Description:
-                <span class="text-base font-light text-gray-700">
-                  {{ reponse.description }}
-                </span>
-              </p>
-              <p class="text-base font-semibold">
-                Date de création:
-                <span class="text-base font-light text-gray-700">
-                  {{ reponse.date_creation }}
-                </span>
-              </p>
-            </div>
-            <input
-              :id="reponse.id"
-              v-if="!reponse.date_validation"
-              type="checkbox"
-              class="h-6 w-6"
-              :checked="reponseCheckboxes?.[depot.id]?.[reponse.id]"
-              @change="toggleCheckbox(depot.id, reponse.id)"
-            />
-          </div>
+            :reponse="reponse"
+            :isChecked="reponseCheckboxes?.[depot.id]?.[reponse.id]"
+            @checkboxChange="toggleCheckbox(depot.id, reponse.id)"
+          />
         </div>
         <div class="flex items-center justify-center" v-else>
           <p class="text-base font-semibold">Aucune réponse</p>
@@ -138,15 +90,18 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { getLabel } from "@/enum/demande_clinique/reponse/type";
 // import api from "@/api";
 
 import MyButton from "../components/atoms/MyButton.vue";
+import ReponseCard from "../components/molecules/ReponseCard.vue";
+import LabelText from "../components/atoms/LabelText.vue";
 
 export default {
   name: "Index",
   components: {
     MyButton,
+    ReponseCard,
+    LabelText,
   },
   data() {
     return {
@@ -172,7 +127,6 @@ export default {
     ...mapActions({
       chargerDepots: "demande_clinique/chargerDepots",
     }),
-    getTypeLabel: getLabel,
     openModal(depotId) {
       this.showModal = true;
       this.modalData.depotId = depotId;
