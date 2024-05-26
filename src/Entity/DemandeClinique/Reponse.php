@@ -34,6 +34,16 @@ class Reponse
     private $dateCreation;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateValidation;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $messageValidation;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Depot::class, inversedBy="reponses")
      */
     private $depot;
@@ -75,6 +85,16 @@ class Reponse
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
+    }
+
+    public function getDateValidation(): ?\DateTimeInterface
+    {
+        return $this->dateValidation;
+    }
+
+    public function getMessageValidation(): ?string
+    {
+        return $this->messageValidation;
     }
 
     public function setDateCreation(\DateTimeInterface $dateCreation): self

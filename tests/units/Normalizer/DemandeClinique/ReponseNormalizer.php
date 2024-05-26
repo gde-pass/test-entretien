@@ -21,6 +21,8 @@ class ReponseNormalizer extends atoum\test
                     ->isEqualTo([
                         'id' => 1,
                         'date_creation' => '2019-01-01 00:00:00',
+                        'message_validation' => null,
+                        'date_validation' => null,
                         'titre' => 'titre',
                         'description' => 'description',
                         'type' => 1,
@@ -34,6 +36,8 @@ class ReponseNormalizer extends atoum\test
         $reponse = new \mock\App\Entity\DemandeClinique\Reponse();
         $this->calling($reponse)->getId = 1;
         $this->calling($reponse)->getDateCreation = new \DateTime('2019-01-01 00:00:00');
+        $this->calling($reponse)->getDateValidation = null;
+        $this->calling($reponse)->getMessageValidation = null;
         $this->calling($reponse)->getTitre = 'titre';
         $this->calling($reponse)->getDescription = 'description';
         $this->calling($reponse)->getType = 1;
