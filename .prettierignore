@@ -1,0 +1,13 @@
+vendor
+var
+translations
+tests
+templates
+src
+public
+node_modules
+migrations
+docker
+config
+bin
+.github

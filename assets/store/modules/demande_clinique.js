@@ -1,4 +1,4 @@
-import api from '@/api';
+import api from "@/api";
 
 export default {
   namespaced: true,
@@ -8,14 +8,14 @@ export default {
   mutations: {
     SET_DEPOTS(state, depots) {
       state.depots = depots;
-    }
+    },
   },
   actions: {
-    async chargerDepots({commit}) {
-      commit('SET_DEPOTS', await api.demande_clinique.depots.all());
+    async chargerDepots({ commit }) {
+      commit("SET_DEPOTS", await api.demande_clinique.depots.all());
     },
   },
   getters: {
-    depots: state => state.depots,
-  }
+    depots: (state) => state.depots,
+  },
 };
